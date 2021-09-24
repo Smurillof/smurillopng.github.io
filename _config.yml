@@ -30,7 +30,7 @@ twitter_username: Smurillopng
 github_username:  Smurillopng
 
 # Build settings
-theme: minima
+theme: minimal-categorized
 plugins:
   - jekyll-feed
 
