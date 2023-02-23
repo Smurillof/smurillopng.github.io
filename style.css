@@ -16,8 +16,8 @@
     --bg-color: linear-gradient(180deg, #2a475e 0%, #1b2838 80%);
     --text-color: #ffffff;
     --link-color: #4d4dff;
-    --h2-color: #3b3bff;
-    --page-title-color: #b87af1;
+    --h2-color: #00c0da;
+    --page-title-color: #00aec5;
     --background-color: #142838;
   }
 }
@@ -45,8 +45,20 @@ a {
   text-align: center;
 }
 
+h1 {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 50px;
+  text-shadow: -2px -2px 0 #ffffff, 2px -2px 0 #ffffff, -2px 2px 0 #ffffff,
+    2px 2px 0 #ffffff;
+  letter-spacing: 4px;
+}
+
 h2 {
   color: var(--h2-color);
+  margin-left: 60px;
+  text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff,
+    1px 1px 0 #ffffff;
+  letter-spacing: 0.5px;
 }
 
 p {
@@ -86,7 +98,7 @@ p {
 
 .list-block p {
   margin: 20px;
-  padding: 50px;
+  padding: 120px;
   border: 2px solid var(--text-color);
   background-color: var(--background-color);
   border-radius: 20px;
