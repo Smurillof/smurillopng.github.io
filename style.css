@@ -2,7 +2,7 @@
 @media (prefers-color-scheme: light) {
   :root {
     --bg-color: linear-gradient(180deg, #e4d7c7 0%, #d5b8a1 80%);
-    --text-color: #000000;
+    --text-color: #1f1f29;
     --link-color: #0000ff;
     --h2-color: #ca582a;
     --page-title-color: #dd5836;
@@ -14,7 +14,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: linear-gradient(180deg, #2a475e 0%, #1b2838 80%);
-    --text-color: #ffffff;
+    --text-color: #eaf0d8;
     --link-color: #4d4dff;
     --h2-color: #00c0da;
     --page-title-color: #00aec5;
@@ -94,6 +94,12 @@ p {
   border-radius: 50px;
   padding: 5px;
   border: thick double var(--text-color);
+}
+
+.list-block img:hover {
+  filter: brightness(1.1);
+  transform: scale(1.05);
+  transition: 0.5s;
 }
 
 .list-block p {
