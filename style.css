@@ -4,9 +4,9 @@
     --bg-color: linear-gradient(180deg, #e4d7c7 0%, #d5b8a1 80%);
     --text-color: #000000;
     --link-color: #0000ff;
-    --h2-color: #0000ff;
-    --page-title-color: #8a2be2;
-    --background-color: #d1c2b0;
+    --h2-color: #ca582a;
+    --page-title-color: #dd5836;
+    --background-color: #a59582;
   }
 }
 
@@ -48,16 +48,16 @@ a {
 h1 {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 50px;
-  text-shadow: -2px -2px 0 #ffffff, 2px -2px 0 #ffffff, -2px 2px 0 #ffffff,
-    2px 2px 0 #ffffff;
+  text-shadow: -4px -3px 0 var(--text-color), 1px -1px 0 var(--text-color), -1px 1px 0 var(--text-color),
+    1px 1px 0 var(--text-color);
   letter-spacing: 4px;
 }
 
 h2 {
   color: var(--h2-color);
   margin-left: 60px;
-  text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff,
-    1px 1px 0 #ffffff;
+  text-shadow: -1px -1px 0 var(--text-color), 1px -1px 0 var(--text-color), -1px 1px 0 var(--text-color),
+    1px 1px 0 var(--text-color);
   letter-spacing: 0.5px;
 }
 
@@ -98,7 +98,7 @@ p {
 
 .list-block p {
   margin: 20px;
-  padding: 120px;
+  padding: 50px;
   border: 2px solid var(--text-color);
   background-color: var(--background-color);
   border-radius: 20px;
