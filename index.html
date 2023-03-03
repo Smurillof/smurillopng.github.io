@@ -4,7 +4,8 @@
     <title>Meus Jogos Favoritos</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="stylesheet" href="style.css" />
-    <script src="themetoggle.js" defer></script>
+    <script src="javascript\themeToggle.js" defer></script>
+    <script src="javascript\soundManager.js" defer></script>
     <meta charset="utf-8" />
   </head>
   <body>
@@ -23,18 +24,27 @@
             ,
             target="_blank"
           >
+            <audio id="ds-ost">
+              <source src="audio\DsMainMenu.mp3" type="audio/mp3" />
+            </audio>
             <img
               src="images\darksouls.jpg"
               ,
               width="200"
               ,
               alt="Dark Souls Cover Art"
+              ,
+              class="ds"
             />
           </a>
           <p>
             Dark Souls foi o jogo que explodiu o gênero Soulslike, que
             rapidamente se tornou um dos meus tipos favoritos de jogos.
           </p>
+          <video class="game-trailer" controls preload="metadata">
+            <source src="video\DsTrailer.mp4" type="video/mp4" />
+            <track label="English" kind="captions" srclang="en" default />
+          </video>
         </div>
         <li>Terraria</li>
         <div class="list-block">
@@ -43,12 +53,17 @@
             ,
             target="_blank"
           >
+            <audio id="terraria-ost">
+              <source src="audio\TerrariaMainMenu.mp3" type="audio/mp3" />
+            </audio>
             <img
               src="images\terraria.jpg"
               ,
               width="200"
               ,
               alt="Terraria Cover Art"
+              ,
+              class="terraria"
             />
           </a>
           <p>
@@ -57,6 +72,10 @@
             inimigos muito grande além de uma infinidade de mods que extendem a
             vida útil do jogo.
           </p>
+          <video class="game-trailer" controls preload="metadata">
+            <source src="video\TerrariaTrailer.mp4" type="video/mp4" />
+            <track label="English" kind="captions" srclang="en" default />
+          </video>
         </div>
         <li>Borderlands 2</li>
         <div class="list-block">
@@ -65,12 +84,17 @@
             ,
             target="_blank"
           >
+            <audio id="borderlands2-ost">
+              <source src="audio\BL2MainMenu.mp3" type="audio/mp3" />
+            </audio>
             <img
               src="images\borderlands.jpg"
               ,
               width="200"
               ,
               alt="Borderlands 2 Cover Art"
+              ,
+              class="borderlands2"
             />
           </a>
           <p>
@@ -78,6 +102,10 @@
             com FPS, criando o que chamamos de "Looter Shooter" e criou um
             sistema de geração de armas que muitos jogos tentam copiar até hoje.
           </p>
+          <video class="game-trailer" controls preload="metadata">
+            <source src="video\Borderlands2Trailer.mp4" type="video/mp4" />
+            <track label="English" kind="captions" srclang="en" default />
+          </video>
         </div>
         <li>The Binding of Isaac</li>
         <div class="list-block">
@@ -86,12 +114,17 @@
             ,
             target="_blank"
           >
+            <audio id="isaac-ost">
+              <source src="audio\TBoIMainMenu.mp3" type="audio/mp3" />
+            </audio>
             <img
               src="images\isaac.jpg"
               ,
               width="200"
               ,
               alt="The Binding of Isaac Rebirth Cover Art"
+              ,
+              class="isaac"
             />
           </a>
           <p>
@@ -100,6 +133,10 @@
             builds diferentes em cada "run" funciona de uma maneira que poucos
             jogos conseguem.
           </p>
+          <video class="game-trailer" controls preload="metadata">
+            <source src="video\IsaacTrailer.mp4" type="video/mp4" />
+            <track label="English" kind="captions" srclang="en" default />
+          </video>
         </div>
         <li>Persona 4</li>
         <div class="list-block">
@@ -108,12 +145,17 @@
             ,
             target="_blank"
           >
+            <audio id="persona4-ost">
+              <source src="audio\P4GMainMenu.mp3" type="audio/mp3" />
+            </audio>
             <img
               src="images\persona4.jpg"
               ,
               width="200"
               ,
               alt="Persona 4 Cover Art"
+              ,
+              class="persona4"
             />
           </a>
           <p>
@@ -124,6 +166,10 @@
             para criar novos a história aborda diversos temas que facilmente
             fazem o jogador se conectar com os personagens.
           </p>
+          <video class="game-trailer" controls preload="metadata">
+            <source src="video\Persona4GoldenTrailer.mp4" type="video/mp4" />
+            <track label="English" kind="captions" srclang="en" default />
+          </video>
         </div>
       </ol>
     </div>
@@ -153,6 +199,10 @@
             com o jogo e o sistema de classes não mesclou bem com o novo sistema
             de monetização do jogo.
           </p>
+          <video class="game-trailer" controls preload="metadata">
+            <source src="video\AdventureQuest3DTrailer.mp4" type="video/mp4" />
+            <track label="English" kind="captions" srclang="en" default />
+          </video>
         </div>
         <li>Kurtzpel</li>
         <div class="list-block">
@@ -177,6 +227,10 @@
             gastar dinheiro, para adquirir qualquer item além do básico que
             vinha com o personagem era necessário gastar dinheiro real.
           </p>
+          <video class="game-trailer" controls preload="metadata">
+            <source src="video\KurtzPelTrailer.mp4" type="video/mp4" />
+            <track label="English" kind="captions" srclang="en" default />
+          </video>
         </div>
         <li>Digimon Masters Online</li>
         <div class="list-block">
@@ -201,6 +255,13 @@
             é perceptível que o jogo mal é mantido e não é jogável pelos padrões
             atuais.
           </p>
+          <video class="game-trailer" controls preload="metadata">
+            <source
+              src="video\DigimonMastersOnlineTrailer.mp4"
+              type="video/mp4"
+            />
+            <track label="English" kind="captions" srclang="en" default />
+          </video>
         </div>
       </ol>
     </div>

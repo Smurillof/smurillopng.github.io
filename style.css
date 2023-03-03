@@ -40,6 +40,23 @@ a {
 .page-title {
   color: var(--page-title-color);
   text-align: center;
+  animation-name: title-anim;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+}
+
+@keyframes title-anim {
+  0% {
+    color: var(--page-title-color);
+  }
+  50% {
+    color: yellow;
+  }
+  100% {
+    color: var(--page-title-color);
+  }
 }
 
 #my-name {
@@ -49,16 +66,16 @@ a {
 h1 {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 50px;
-  text-shadow: -4px -3px 0 var(--text-color), 1px -1px 0 var(--text-color), -1px 1px 0 var(--text-color),
-    1px 1px 0 var(--text-color);
+  text-shadow: -4px -3px 0 var(--text-color), 1px -1px 0 var(--text-color),
+    -1px 1px 0 var(--text-color), 1px 1px 0 var(--text-color);
   letter-spacing: 4px;
 }
 
 h2 {
   color: var(--h2-color);
   margin-left: 60px;
-  text-shadow: -1px -1px 0 var(--text-color), 1px -1px 0 var(--text-color), -1px 1px 0 var(--text-color),
-    1px 1px 0 var(--text-color);
+  text-shadow: -1px -1px 0 var(--text-color), 1px -1px 0 var(--text-color),
+    -1px 1px 0 var(--text-color), 1px 1px 0 var(--text-color);
   letter-spacing: 0.5px;
 }
 
@@ -131,4 +148,11 @@ p {
 
 #theme-toggle:hover {
   filter: invert(100%);
+}
+
+.game-trailer {
+  border: 2px solid var(--text-color);
+  border-radius: 10px;
+  width: 350px;
+  height: 195px;
 }
