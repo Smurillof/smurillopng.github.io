@@ -1,8 +1,15 @@
+@media only screen and (max-width: 480px) {
+  :root {
+    width: 100%;
+    max-width: none;
+  }
+}
+
 :root {
   --bg-color: linear-gradient(180deg, #2a475e 0%, #1b2838 80%);
   --text-color: #ffffff;
-  --link-color: #4d4dff;
-  --h2-color: #00c0da;
+  --link-color: #64b5f6;
+  --h2-color: #0298ac;
   --page-title-color: #00aec5;
   --background-color: #142838;
   --invert-filter: 100%;
@@ -12,10 +19,10 @@
 .light-mode {
   --bg-color: linear-gradient(180deg, #e4d7c7 0%, #d5b8a1 80%);
   --text-color: #000000;
-  --link-color: #0000ff;
-  --h2-color: #0000ff;
-  --page-title-color: #8a2be2;
-  --background-color: #d1c2b0;
+  --link-color: #1e88e5;
+  --h2-color: #ba3ad1;
+  --page-title-color: #9c27b0;
+  --background-color: #b3a19e;
   --invert-filter: 0%;
 }
 
@@ -31,6 +38,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   font-family: "Roboto", sans-serif;
+  font-size: 1rem;
 }
 
 a {
@@ -104,6 +112,9 @@ p {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  width: auto;
+  margin: auto;
 }
 
 .list-block img {
@@ -112,6 +123,7 @@ p {
   border-radius: 50px;
   padding: 5px;
   border: thick double var(--text-color);
+  background-color: var(--background-color);
 }
 
 .list-block img:hover {
@@ -131,7 +143,7 @@ p {
 
 #theme-toggle {
   position: absolute;
-  background-image: url(lightbulb.ico);
+  background-image: url(../images/lightbulb.ico);
   background-repeat: no-repeat;
   background-size: 40px;
   background-color: var(--background-color);
@@ -144,6 +156,7 @@ p {
   font-weight: bold;
   border: 2px solid var(--text-color);
   border-radius: 30px;
+  cursor: pointer;
 }
 
 #theme-toggle:hover {
