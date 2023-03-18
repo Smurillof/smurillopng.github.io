@@ -1,10 +1,3 @@
-@media only screen and (max-width: 480px) {
-  :root {
-    width: 100%;
-    max-width: none;
-  }
-}
-
 :root {
   --bg-color: linear-gradient(180deg, #2a475e 0%, #1b2838 80%);
   --text-color: #ffffff;
@@ -13,6 +6,8 @@
   --page-title-color: #00aec5;
   --background-color: #142838;
   --invert-filter: 100%;
+  width: 100%;
+  max-width: none;
 }
 
 /* for light/dark mode toggle */
@@ -34,8 +29,6 @@ body {
   background-image: var(--bg-color);
   color: var(--text-color);
   background-attachment: fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
   background-position: center;
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
@@ -48,11 +41,7 @@ a {
 .page-title {
   color: var(--page-title-color);
   text-align: center;
-  animation-name: title-anim;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-  animation-timing-function: linear;
+  animation: title-anim 2s linear alternate infinite;
 }
 
 @keyframes title-anim {
@@ -93,7 +82,7 @@ p {
 
 .game-list {
   justify-content: space-between;
-  width: 1500px;
+  width: 100%;
   margin: auto;
 }
 
@@ -106,6 +95,7 @@ p {
   margin: 10px;
   margin-right: 1250px;
   font-weight: bold;
+  width: 12%;
 }
 
 .list-block {
@@ -123,7 +113,6 @@ p {
   border-radius: 50px;
   padding: 5px;
   border: thick double var(--text-color);
-  background-color: var(--background-color);
 }
 
 .list-block img:hover {
@@ -168,4 +157,66 @@ p {
   border-radius: 10px;
   width: 350px;
   height: 200px;
+}
+
+/* Ajustando resoluções */
+
+@media (max-width: 1200px) {
+  .game-list {
+    width: 100%;
+    margin-right: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .game-list ol li {
+    margin: 10px 0;
+    margin-right: 0;
+    width: 16%;
+  }
+  p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 900px) {
+  .game-list {
+    width: 100%;
+    margin-right: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .game-list ol li {
+    margin: 10px 0;
+    margin-right: 0;
+    width: 90%;
+  }
+  p {
+    font-size: 12px;
+  }
+  .game-trailer {
+    width: 100%;
+  }
+}
+
+@media (max-width: 850px) {
+  .list-block {
+    flex-direction: column;
+  }
+  .list-block p {
+    margin: 20px 0;
+    padding: 30px;
+  }
+  .game-trailer {
+    width: 300px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 500px) {
+  .game-list ol li {
+    width: 80%;
+  }
+  .game-trailer {
+    width: 100%;
+  }
 }
