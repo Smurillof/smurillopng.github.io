@@ -1,19 +1,19 @@
 :root {
   --bg-color: linear-gradient(180deg, #2a475e 0%, #1b2838 80%);
-  --text-color: #ffffff;
+  --text-color: #f2f2f2;
   --link-color: #64b5f6;
   --h2-color: #0298ac;
   --page-title-color: #00aec5;
   --background-color: #142838;
   --invert-filter: 100%;
   width: 100%;
-  max-width: none;
+  overflow-x: hidden;
 }
 
 /* for light/dark mode toggle */
 .light-mode {
   --bg-color: linear-gradient(180deg, #e4d7c7 0%, #d5b8a1 80%);
-  --text-color: #000000;
+  --text-color: #0a0a0a;
   --link-color: #1e88e5;
   --h2-color: #ba3ad1;
   --page-title-color: #9c27b0;
@@ -112,7 +112,7 @@ p {
   background-color: var(--background-color);
   border-radius: 100px;
   margin: 10px;
-  margin-right: 1250px;
+  margin-right: 20%;
   font-weight: bold;
   width: 12%;
 }
