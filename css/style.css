@@ -10,21 +10,6 @@
   overflow-x: hidden;
 }
 
-/* for light/dark mode toggle */
-.light-mode {
-  --bg-color: linear-gradient(180deg, #e4d7c7 0%, #d5b8a1 80%);
-  --text-color: #0a0a0a;
-  --link-color: #1e88e5;
-  --h2-color: #ba3ad1;
-  --page-title-color: #9c27b0;
-  --background-color: #b3a19e;
-  --invert-filter: 0%;
-}
-
-.invert {
-  filter: invert(100%);
-}
-
 body {
   background-image: var(--bg-color);
   color: var(--text-color);
@@ -34,56 +19,13 @@ body {
   font-size: 1rem;
 }
 
-.main-header {
-  background-color: var(--background-color);
-  color: var(--text-color);
-  padding: 20px;
-  border: 2px solid var(--text-color);
-  border-radius: 10px;
-  margin: 20px;
-  margin-top: 15px;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: 0;
-}
-
-.header-container {
-  max-width: 100%;
-  margin: 0 auto;
-}
-
 a {
   color: var(--link-color);
-}
-
-.page-title {
-  margin: 0;
-  color: var(--page-title-color);
-  text-align: center;
-  animation: title-anim 2s linear alternate infinite;
-}
-
-@keyframes title-anim {
-  0% {
-    color: var(--page-title-color);
-  }
-  50% {
-    color: yellow;
-  }
-  100% {
-    color: var(--page-title-color);
-  }
-}
-
-#my-name {
-  text-align: center;
 }
 
 h1 {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 50px;
-  text-shadow: -4px -3px 0 var(--text-color), 1px -1px 0 var(--text-color),
-    -1px 1px 0 var(--text-color), 1px 1px 0 var(--text-color);
   letter-spacing: 4px;
 }
 
@@ -99,143 +41,33 @@ p {
   font-size: 16px;
 }
 
-.game-list {
-  justify-content: space-between;
-  width: 100%;
-  margin: auto;
-}
-
-.game-list ol li {
-  text-align: center;
-  padding: 10px;
-  border: thick double var(--text-color);
-  background-color: var(--background-color);
-  border-radius: 100px;
-  margin: 10px;
-  margin-right: 20%;
-  font-weight: bold;
-  width: 12%;
-}
-
-.list-block {
+.drawingContainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
+  align-content: center;
   width: auto;
-  margin: auto;
-}
-
-.list-block img {
-  width: 200px;
   height: auto;
-  border-radius: 50px;
-  padding: 5px;
-  border: thick double var(--text-color);
 }
 
-.list-block img:hover {
-  filter: brightness(1.1);
-  transform: scale(1.05);
-  transition: 0.5s;
-}
-
-.list-block p {
-  margin: 20px;
-  padding: 50px;
-  border: 2px solid var(--text-color);
+.drawings {
+  border: 0.5rem outset white;
+  border-radius: 1rem;
   background-color: var(--background-color);
-  border-radius: 20px;
-  font-weight: bold;
-}
-
-#theme-toggle {
-  position: absolute;
-  background-image: url(../images/lightbulb.ico);
-  background-repeat: no-repeat;
-  background-size: 40px;
-  background-color: var(--background-color);
-  background-position: center;
-  width: 50px;
-  height: 50px;
-  top: 20px;
-  right: 20px;
-  font-size: 10px;
-  font-weight: bold;
-  border: 2px solid var(--text-color);
-  border-radius: 30px;
-  cursor: pointer;
-}
-
-#theme-toggle:hover {
-  filter: invert(100%);
-}
-
-.game-trailer {
-  border: 2px solid var(--text-color);
-  border-radius: 10px;
-  width: 350px;
-  height: 200px;
 }
 
 /* Ajustando resoluções */
 
 @media (max-width: 1200px) {
-  .game-list {
-    width: 100%;
-    margin-right: 0;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .game-list ol li {
-    margin: 10px 0;
-    margin-right: 0;
-    width: 16%;
-  }
-  p {
-    font-size: 14px;
-  }
 }
 
 @media (max-width: 900px) {
-  .game-list {
-    width: 100%;
-    margin-right: 0;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .game-list ol li {
-    margin: 10px 0;
-    margin-right: 0;
-    width: 90%;
-  }
-  p {
-    font-size: 12px;
-  }
-  .game-trailer {
-    width: 100%;
-  }
 }
 
 @media (max-width: 850px) {
-  .list-block {
-    flex-direction: column;
-  }
-  .list-block p {
-    margin: 20px 0;
-    padding: 30px;
-  }
-  .game-trailer {
-    width: 300px;
-    height: 200px;
-  }
 }
 
 @media (max-width: 500px) {
-  .game-list ol li {
-    width: 80%;
-  }
-  .game-trailer {
-    width: 100%;
-  }
 }
