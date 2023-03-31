@@ -133,6 +133,7 @@ function drawSnake(ctx, x, y) {
 function drawDonkeyKong() {
   const canvas = document.getElementById("drawAtariGame");
   const ctx = canvas.getContext("2d");
+  ctx.scale(3, 3);
   ctx.mozImageSmoothingEnabled = false;
   ctx.oImageSmoothingEnabled = false;
   ctx.webkitImageSmoothingEnabled = false;
