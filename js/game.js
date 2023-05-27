@@ -75,7 +75,7 @@ class mainScene {
         this.ballSpeedText = this.add.text(width - 230, height - 30, 'Ball Speed: ' + ballSpeed, { fontSize: '24px', fill: '#000' });
 
         // Criando botão
-        this.restartButton = this.add.text(width / 2, height / 2, 'Press here to Restart', { fontSize: '32px', fill: '#FFF' })
+        this.restartButton = this.add.text(width / 2, height / 2, 'Press here to Restart!', { fontSize: '32px', fill: '#FFF' })
             .setOrigin(0.5)
             .setPadding(10)
             .setBackgroundColor('#000')
