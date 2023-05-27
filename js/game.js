@@ -84,22 +84,20 @@ class mainScene {
             .on('pointerdown', () => this.restartGame())
             .on('pointerover', () => this.restartButton.setStyle({ fill: '#ff0' }))
             .on('pointerout', () => this.restartButton.setStyle({ fill: '#FFF' }));
-
-        this.input.addPointer(2);
     }
     update() {
         if (stopGame) return;
         // Definindo movimento do player
-        if (this.input.pointer1.isDown && !toggleControls && this.input.pointer1.y < height / 2) {
+        if (cursors.up.isDown && !toggleControls) {
             player.setVelocityY(-moveSpeed);
         }
-        else if (this.input.pointer1.isDown && !toggleControls && this.input.pointer1.y > height / 2) {
+        else if (cursors.down.isDown && !toggleControls) {
             player.setVelocityY(moveSpeed);
         }
-        else if (this.input.pointer1.isDown && toggleControls && this.input.pointer1.x < width / 2) {
+        else if (cursors.left.isDown && toggleControls) {
             player.setVelocityY(moveSpeed);
         }
-        else if (this.input.pointer1.isDown && toggleControls && this.input.pointer1.x > width / 2) {
+        else if (cursors.right.isDown && toggleControls) {
             player.setVelocityY(-moveSpeed);
         }
         else {
