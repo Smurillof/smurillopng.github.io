@@ -3,7 +3,6 @@
 // Definindo variáveis globais
 /// Elementos do Jogo
 let player;
-let player2;
 let ai;
 let ball;
 /// Controles
@@ -21,7 +20,6 @@ let width = 600;
 let height = 600;
 let angle = 90;
 let toggleControls = false;
-let aiPlayer = true;
 let stopGame = false;
 /// Textos
 let scoreMessage = 'Score: ';
@@ -33,20 +31,21 @@ class mainScene {
     preload() {
         // Carregando assets
         this.load.image('player', 'assets/bar.png');
+        this.load.image('ai', 'assets/bar2.png');
         this.load.image('ball', 'assets/ball.png');
+        this.load.image('background', 'assets/background.png');
         this.canvas = this.sys.game.canvas;
     }
     create() {
         width = this.canvas.width;
         height = this.canvas.height;
+        this.add.sprite(width / 2, height / 2, 'background').setScale(1.5);
+
         // Criando player
         player = this.physics.add.sprite(playerOffset, height / 2, 'player');
 
-        // Criando IA ou player 2
-        if (aiPlayer)
-            ai = this.physics.add.sprite(width - playerOffset, height / 2, 'player');
-        else
-            player2 = this.physics.add.sprite(width - playerOffset, height / 2, 'player');
+        // Criando IA
+        ai = this.physics.add.sprite(width - playerOffset, height / 2, 'ai');
 
         // Criando bola
         ball = this.physics.add.sprite(width / 2, height / 2, 'ball');
@@ -58,76 +57,59 @@ class mainScene {
         player.setCollideWorldBounds(true);
         player.setImmovable(true);
 
-        // Criando limites do jogo para a IA ou player 2 e definindo como imóvel
-        if (aiPlayer) {
-            ai.setCollideWorldBounds(true);
-            ai.setImmovable(true);
-        }
-        else {
-            player2.setCollideWorldBounds(true);
-            player2.setImmovable(true);
-        }
+        // Criando limites do jogo para a IA e definindo como imóvel
+        ai.setCollideWorldBounds(true);
+        ai.setImmovable(true);
 
         // Criando colisão entre player/IA e bola
         this.physics.add.collider(player, ball, this.rotateGame, null, this);
-        if (aiPlayer)
-            this.physics.add.collider(ai, ball);
-        else
-            this.physics.add.collider(player2, ball, this.rotateGame, null, this);
+        this.physics.add.collider(ai, ball);
 
         // Criando input do teclado
         cursors = this.input.keyboard.createCursorKeys();
 
         // Criando textos
-        this.scoreText = this.add.text(10, 10, scoreMessage + playerScore, { fontSize: '32px', fill: '#FFF' });
-        this.timeText = this.add.text(width - 200, 10, timeMessage + remainingTime, { fontSize: '32px', fill: '#FFF' });
-        this.lifeText = this.add.text(10, height - 50, lifeMessage + remainingLife, { fontSize: '32px', fill: '#FFF' });
-        this.ballSpeedText = this.add.text(width - 300, height - 50, 'Ball Speed: ' + ballSpeed, { fontSize: '32px', fill: '#FFF' });
+        this.scoreText = this.add.text(10, 10, scoreMessage + playerScore, { fontSize: '24px', fill: '#000' });
+        this.timeText = this.add.text(width - 130, 10, timeMessage + remainingTime, { fontSize: '24px', fill: '#000' });
+        this.lifeText = this.add.text(10, height - 30, lifeMessage + remainingLife, { fontSize: '24px', fill: '#000' });
+        this.ballSpeedText = this.add.text(width - 230, height - 30, 'Ball Speed: ' + ballSpeed, { fontSize: '24px', fill: '#000' });
+
+        // Criando botão
+        this.restartButton = this.add.text(width / 2, height / 2, 'Press here to Restart', { fontSize: '32px', fill: '#FFF' })
+            .setOrigin(0.5)
+            .setPadding(10)
+            .setBackgroundColor('#000')
+            .setInteractive()
+            .setVisible(false)
+            .on('pointerdown', () => this.restartGame())
+            .on('pointerover', () => this.restartButton.setStyle({ fill: '#ff0' }))
+            .on('pointerout', () => this.restartButton.setStyle({ fill: '#FFF' }));
+
+        this.input.addPointer(2);
     }
     update() {
         if (stopGame) return;
         // Definindo movimento do player
-        if (cursors.up.isDown && !toggleControls) {
+        if (this.input.pointer1.isDown && !toggleControls && this.input.pointer1.y < height / 2) {
             player.setVelocityY(-moveSpeed);
         }
-        else if (cursors.down.isDown && !toggleControls) {
+        else if (this.input.pointer1.isDown && !toggleControls && this.input.pointer1.y > height / 2) {
             player.setVelocityY(moveSpeed);
         }
-        else if (cursors.left.isDown && toggleControls) {
+        else if (this.input.pointer1.isDown && toggleControls && this.input.pointer1.x < width / 2) {
             player.setVelocityY(moveSpeed);
         }
-        else if (cursors.right.isDown && toggleControls) {
+        else if (this.input.pointer1.isDown && toggleControls && this.input.pointer1.x > width / 2) {
             player.setVelocityY(-moveSpeed);
         }
         else {
             player.setVelocityY(0);
         }
 
-        // Definindo movimento do player 2 caso não seja IA
-        if (!aiPlayer) {
-            if (cursors.w.isDown && !toggleControls) {
-                player2.setVelocityY(-moveSpeed);
-            }
-            else if (cursors.s.isDown && !toggleControls) {
-                player2.setVelocityY(moveSpeed);
-            }
-            else if (cursors.a.isDown && toggleControls) {
-                player2.setVelocityY(moveSpeed);
-            }
-            else if (cursors.d.isDown && toggleControls) {
-                player2.setVelocityY(-moveSpeed);
-            }
-            else {
-                player2.setVelocityY(0);
-            }
-        }
-
         // Definindo movimento da IA
-        if (aiPlayer) {
-            ai.setVelocityY(ball.body.velocity.y);
-            remainingTime -= (1 / 60);
-            this.timeText.setText(timeMessage + Math.floor(remainingTime));
-        }
+        ai.setVelocityY(ball.body.velocity.y);
+        remainingTime -= (1 / 60);
+        this.timeText.setText(timeMessage + Math.floor(remainingTime));
 
         // Definindo movimento da bola
         if (ball.x <= edgeOffset) {
@@ -161,7 +143,8 @@ class mainScene {
             this.lifeText.setText(lifeMessage + remainingLife);
         }
         if (remainingLife == 0) {
-            this.add.text(300, 300, gameOverMessage, { fontSize: '32px', fill: '#FFF' });
+            this.add.text(width / 2, height / 2 - 50, gameOverMessage, { fontSize: '32px', fill: '#000' })
+                .setOrigin(0.5)
             this.gameOver();
         }
     }
@@ -170,20 +153,13 @@ class mainScene {
         // Adicionando um delay antes de reiniciar o jogo
         stopGame = true;
 
+        this.cameras.main.rotation = 0;
+
         player.setVelocityY(0);
         ball.setVelocity(0, 0);
-        if (aiPlayer)
-            ai.setVelocityY(0);
-        else
-            player2.setVelocityY(0);
+        ai.setVelocityY(0);
 
-        this.time.addEvent({
-            delay: 3000,
-            callback: () => {
-                this.restartGame();
-            },
-            loop: false
-        });
+        this.restartButton.setVisible(true);
     }
 
     restartGame() {
@@ -214,4 +190,8 @@ new Phaser.Game({
     scene: mainScene,
     physics: { default: 'arcade' },
     parent: 'game',
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    }
 });
