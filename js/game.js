@@ -12,9 +12,9 @@ let playerOffset = 50;
 let edgeOffset = 10;
 let moveSpeed = 300;
 let ballSpeed = 200;
+let initialBallSpeed = ballSpeed;
 let ballBounce = 1;
-let remainingLife = 1;
-let remainingTime = 60;
+let remainingLife = 3;
 let playerScore = 0;
 let width = 600;
 let height = 600;
@@ -49,7 +49,13 @@ class mainScene {
 
         // Criando bola
         ball = this.physics.add.sprite(width / 2, height / 2, 'ball');
-        ball.setVelocity(ballSpeed, ballSpeed);
+        // Gerando um ângulo aleatório entre 45 e 135 graus
+        let angle = Phaser.Math.Between(45, 135);
+
+        // Calculando a velocidade da bola com base no ângulo
+        let velocityX = initialBallSpeed * Math.cos(angle);
+        let velocityY = initialBallSpeed * Math.sin(angle);
+        ball.setVelocity(velocityX, velocityY);
         ball.setBounce(ballBounce, ballBounce);
         ball.setCollideWorldBounds(true);
 
@@ -69,8 +75,7 @@ class mainScene {
         cursors = this.input.keyboard.createCursorKeys();
 
         // Criando textos
-        this.scoreText = this.add.text(10, 10, scoreMessage + playerScore, { fontSize: '24px', fill: '#000' });
-        this.timeText = this.add.text(width - 130, 10, timeMessage + remainingTime, { fontSize: '24px', fill: '#000' });
+        this.scoreText = this.add.text(width / 2 - 60, 10, scoreMessage + playerScore, { fontSize: '24px', fill: '#000' });
         this.lifeText = this.add.text(10, height - 30, lifeMessage + remainingLife, { fontSize: '24px', fill: '#000' });
         this.ballSpeedText = this.add.text(width - 230, height - 30, 'Ball Speed: ' + ballSpeed, { fontSize: '24px', fill: '#000' });
 
@@ -105,9 +110,9 @@ class mainScene {
         }
 
         // Definindo movimento da IA
-        ai.setVelocityY(ball.body.velocity.y);
-        remainingTime -= (1 / 60);
-        this.timeText.setText(timeMessage + Math.floor(remainingTime));
+        this.time.delayedCall(800, () => {
+            ai.setVelocityY(ball.body.velocity.y);
+        });
 
         // Definindo movimento da bola
         if (ball.x <= edgeOffset) {
@@ -115,6 +120,11 @@ class mainScene {
         }
         else if (ball.x >= width - edgeOffset) {
             this.respawnBall(true);
+        }
+
+        // Verificando se o jogo acabou
+        if (remainingLife == 0) {
+            this.gameOver();
         }
     }
 
@@ -131,7 +141,14 @@ class mainScene {
         // Respawnando a bola no centro da tela
         ball.x = width / 2;
         ball.y = height / 2;
-        ball.setVelocity(ballSpeed, ballSpeed);
+
+        // Gerando um ângulo aleatório entre 45 e 135 graus
+        let angle = Phaser.Math.Between(45, 135);
+
+        // Calculando a velocidade da bola com base no ângulo
+        let velocityX = initialBallSpeed * Math.cos(angle);
+        let velocityY = initialBallSpeed * Math.sin(angle);
+        ball.setVelocity(velocityX, velocityY);
 
         // Atualizando a pontuação do player ou da IA/player 2
         if (playerPoint)
@@ -140,16 +157,16 @@ class mainScene {
             remainingLife--;
             this.lifeText.setText(lifeMessage + remainingLife);
         }
-        if (remainingLife == 0) {
-            this.add.text(width / 2, height / 2 - 50, gameOverMessage, { fontSize: '32px', fill: '#000' })
-                .setOrigin(0.5)
-            this.gameOver();
-        }
     }
 
     gameOver() {
         // Adicionando um delay antes de reiniciar o jogo
         stopGame = true;
+
+        if (remainingLife == 0) {
+            this.add.text(width / 2, height / 2 - 50, gameOverMessage, { fontSize: '32px', fill: '#000' })
+                .setOrigin(0.5)
+        }
 
         this.cameras.main.rotation = 0;
 
@@ -169,7 +186,6 @@ class mainScene {
         ball.setVelocity(ballSpeed, ballSpeed);
 
         remainingLife = 3;
-        remainingTime = 60;
         playerScore = 0;
         ballSpeed = 200;
 
