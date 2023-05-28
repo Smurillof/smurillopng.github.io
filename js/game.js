@@ -34,25 +34,25 @@ class mainScene {
         this.load.image('ai', 'assets/bar2.png');
         this.load.image('ball', 'assets/ball.png');
         this.load.image('background', 'assets/background.png');
+        // Definindo o tamanho do canvas
         this.canvas = this.sys.game.canvas;
     }
     create() {
+        // Salvando o tamanho do canvas
         width = this.canvas.width;
         height = this.canvas.height;
-        this.add.sprite(width / 2, height / 2, 'background').setScale(1.5);
 
+        // Criando background
+        this.add.sprite(width / 2, height / 2, 'background').setScale(1.5);
         // Criando player
         player = this.physics.add.sprite(playerOffset, height / 2, 'player');
-
         // Criando IA
         ai = this.physics.add.sprite(width - playerOffset, height / 2, 'ai');
-
         // Criando bola
         ball = this.physics.add.sprite(width / 2, height / 2, 'ball');
-        // Gerando um ângulo aleatório entre 45 e 135 graus
-        let angle = Phaser.Math.Between(45, 135);
 
-        // Calculando a velocidade da bola com base no ângulo
+        // Calculando a velocidade da bola com base no ângulo aleatório
+        let angle = Phaser.Math.Between(45, 135);
         let velocityX = initialBallSpeed * Math.cos(angle);
         let velocityY = initialBallSpeed * Math.sin(angle);
         ball.setVelocity(velocityX, velocityY);
@@ -79,7 +79,7 @@ class mainScene {
         this.lifeText = this.add.text(10, height - 30, lifeMessage + remainingLife, { fontSize: '24px', fill: '#000' });
         this.ballSpeedText = this.add.text(width - 230, height - 30, 'Ball Speed: ' + ballSpeed, { fontSize: '24px', fill: '#000' });
 
-        // Criando botão
+        // Criando botão de restart
         this.restartButton = this.add.text(width / 2, height / 2, 'Press here to Restart!', { fontSize: '32px', fill: '#FFF' })
             .setOrigin(0.5)
             .setPadding(10)
@@ -91,7 +91,9 @@ class mainScene {
             .on('pointerout', () => this.restartButton.setStyle({ fill: '#FFF' }));
     }
     update() {
+        // Verificando se o jogo acabou
         if (stopGame) return;
+
         // Definindo movimento do player
         if (cursors.up.isDown && !toggleControls) {
             player.setVelocityY(-moveSpeed);
@@ -142,15 +144,13 @@ class mainScene {
         ball.x = width / 2;
         ball.y = height / 2;
 
-        // Gerando um ângulo aleatório entre 45 e 135 graus
+        // Calculando a velocidade da bola com base no ângulo aleatório
         let angle = Phaser.Math.Between(45, 135);
-
-        // Calculando a velocidade da bola com base no ângulo
         let velocityX = initialBallSpeed * Math.cos(angle);
         let velocityY = initialBallSpeed * Math.sin(angle);
         ball.setVelocity(velocityX, velocityY);
 
-        // Atualizando a pontuação do player ou da IA/player 2
+        // Atualizando a pontuação ou vida do player
         if (playerPoint)
             this.scoreText.setText(scoreMessage + ++playerScore);
         else {
@@ -160,20 +160,24 @@ class mainScene {
     }
 
     gameOver() {
-        // Adicionando um delay antes de reiniciar o jogo
+        // Finalizando o jogo
         stopGame = true;
 
+        // Mostrando mensagem de game over
         if (remainingLife == 0) {
             this.add.text(width / 2, height / 2 - 50, gameOverMessage, { fontSize: '32px', fill: '#000' })
                 .setOrigin(0.5)
         }
 
+        // Resetando a rotação da câmera
         this.cameras.main.rotation = 0;
 
+        // Parando os movimentos
         player.setVelocityY(0);
         ball.setVelocity(0, 0);
         ai.setVelocityY(0);
 
+        // Mostrando botão de restart
         this.restartButton.setVisible(true);
     }
 
@@ -181,17 +185,21 @@ class mainScene {
         // Reiniciando o jogo
         this.scene.restart();
 
+        // Resetando a posição e velocidade da bola
         ball.x = width / 2;
         ball.y = height / 2;
         ball.setVelocity(ballSpeed, ballSpeed);
 
+        // Resetando os valores do jogo
         remainingLife = 3;
         playerScore = 0;
         ballSpeed = 200;
 
+        // Resetando rotação e controle do jogo
         toggleControls = false;
         this.cameras.main.rotation = 0;
 
+        // Começando o jogo novamente
         stopGame = false;
     }
 }
